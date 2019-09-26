@@ -18,7 +18,6 @@ import {
 import {
   AppSwitch
 } from '@coreui/react'
-import SocketIoHelper from "../../helpers/socketHelper";
 import { store } from 'react-notifications-component';
 import base from '../../notifications/notification';
 
@@ -38,8 +37,36 @@ class Bike extends Component {
     super(props);
 
     this.state = {
-      settings: "",
-      state: "",
+      settings: {
+        "dest": "0",
+        "type": "3",
+        "circonferenza": "450",
+        "run": "4",
+        "log": true,
+        "csv": false,
+        "ant": true,
+        "potenza": "18",
+        "led": "7",
+        "p13": false,
+        "led_mode": "7",
+        "circumference": "5",
+        "calibration": true,
+        "calibration_value": "14",
+        "update": "12:00:00_01:01"
+      },
+      state: {
+        "dest": "0",
+        "type": "1",
+        "log": true,
+        "video": false,
+        "ant": true,
+        "video_running": false,
+        "video_recording": false,
+        "powermeter_running": false,
+        "heartrate_running": false,
+        "speed_running": true,
+        "calibration": false
+      },
       visible: false,
       visible_video: false,
       visible_rasp: false,
@@ -48,26 +75,31 @@ class Bike extends Component {
 
   componentDidMount() {
     this._isMounted = true;
-    this.reloadStatus();
   }
 
   componentWillUnmount() {
     this._isMounted = false;
   }
 
-  reloadStatus() {
-    SocketIoHelper.getSettings(settings => {
-      if (JSON.stringify(this.state.settings) !== JSON.stringify(settings)) {
-        this.setState({ settings });
+  reloadStatus(data) {
+    if (data !== undefined) {
+      let newValue;
+      if (data.type === "7") {
+        newValue = {
+          ...this.state.state,
+          video_recording: data.value
+        }
+        this.setState({ state: newValue });
       }
-    });
-    SocketIoHelper.getState(state => {
-      this.setState({ state })
-    });
+      if (data.type === "3") {
+        newValue = data
+        this.setState({ settings: newValue });
+      }
+    }
   }
 
-  updateView = () => {
-    this.reloadStatus();
+  updateView = (data) => {
+    this.reloadStatus(data);
   }
 
   loading = () => (
@@ -150,8 +182,7 @@ class CardVideo extends Component {
       message: "Invio del pacchetto video alla bici",
       ...base,
     });
-    SocketIoHelper.sendVideo(this.inputVideo);
-    this.props.reloadStatus();
+    this.props.reloadStatus(this.inputVideo);
   };
 
   render() {
@@ -239,8 +270,7 @@ class CardSetting extends Component {
       ...base,
     });
     this.inputSettings.update = currentTime()
-    SocketIoHelper.saveSettings(this.inputSettings);
-    this.props.reloadStatus();
+    this.props.reloadStatus(this.inputSettings);
   }
 
   render() {
@@ -367,6 +397,8 @@ class CardState extends Component {
 
   // TODO: issue #22
   UNSAFE_componentWillReceiveProps() {
+    console.log(this.props.state)
+    console.log(this.props.settings)
     this.updateStatus();
   }
 
@@ -401,9 +433,7 @@ class CardState extends Component {
     let state = JSON.stringify(jstate, null, 1).replace(/\{|\}|"|,|/g, "").replace("\n", "");
     let settings = JSON.stringify(jsettings, null, 1).replace(/\{|\}|"|,/g, "");
 
-    this.setState({
-      status: state + settings
-    });
+    this.setState({ status: state + settings });
   };
 
   render() {
@@ -457,7 +487,6 @@ class CardRasp extends Component {
       ...base,
     });
     this.inputRasp.value = value;
-    SocketIoHelper.sendRasp(this.inputRasp);
     this.props.reloadStatus();
   }
 
