@@ -478,8 +478,8 @@ class Dashboard extends Component {
   componentDidMount() {
     this._isMounted = true;
 
-    if (this._isMounted) {
-      setInterval(() => {
+    setInterval(() => {
+      if (this._isMounted) {
         if (cnt >= DATA.length)
           cnt = 0;
 
@@ -496,19 +496,23 @@ class Dashboard extends Component {
         }
         cnt++;
         this.setState({ data });
-      }, 300);
+      }
+    }, 300);
 
-      // aggiorna i valori del meteo
-      setInterval(() => {
+    // aggiorna i valori del meteo
+    setInterval(() => {
+      if (this._isMounted) {
+
         let weather = {
           "temperature": randomNumber(30, 20),
           "humidity": randomNumber(80, 50),
           "pressure": randomNumber(5, 1)
         }
-        this.setState({ weather })
-      }, 3000);
-    }
+        this.setState({ weather });
+      }
+    }, 3000);
   }
+
 
   componentWillUnmount() {
     this._isMounted = false;
