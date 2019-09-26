@@ -13,9 +13,6 @@ const defaultProps = {};
 const raccolta = [
   "I record esistono per essere battuti - M. Schumacher",
   "La bici non va avanti a watt e ignoranza? - Sid",
-  "frase 3",
-  "cose a caso",
-  "frase 4"
 ];
 
 class DefaultFooter extends Component {
@@ -46,7 +43,7 @@ class DefaultFooter extends Component {
   render() {
     return (
       <React.Fragment>
-        <span style={{cursor: "pointer", "MozUserSelect": "none"}} onClick={this.getFrase} className="ml-auto mr-auto noselect">{this.state.frase}</span>
+        <span style={{ cursor: "pointer", "MozUserSelect": "none" }} onClick={this.getFrase} className="ml-auto mr-auto noselect">{this.state.frase}</span>
       </React.Fragment>
     );
   }
