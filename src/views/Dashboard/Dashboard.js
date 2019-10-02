@@ -487,7 +487,7 @@ class Dashboard extends Component {
         "heartrate": DATA[0][0],
         "power": DATA[0][1],
         "cadence": DATA[0][2],
-        "distance": DATA[0][3],
+        "distance": 0,
         "speed": DATA[0][4],
         "time": Math.round(DATA[0][5] / 3 * 60),
         "gear": Math.floor(0 / 36 + 1)
@@ -559,7 +559,7 @@ class Dashboard extends Component {
           "heartrate": DATA[cnt][0],
           "power": DATA[cnt][1],
           "cadence": DATA[cnt][2],
-          "distance": Math.round((DATA[cnt][3] * 100) * 100) / 100,
+          "distance": Math.round((DATA[cnt][3] * 1000) * 100) / 100,
           "speed": Math.round(DATA[cnt][4] * 100) / 100,
           "time": Math.trunc(DATA[cnt][5] / 3 * 60),
           "gear": Math.floor(cnt / 36 + 1)
