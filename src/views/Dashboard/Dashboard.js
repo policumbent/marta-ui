@@ -490,7 +490,7 @@ class Dashboard extends Component {
         "distance": DATA[0][3],
         "speed": DATA[0][4],
         "time": Math.round(DATA[0][5] / 3 * 60),
-        "gear": Math.floor(0 / 29 + 1)
+        "gear": Math.floor(0 / 36 + 1)
       },
       weather: {
         "temperature": randomNumber(28, 20),
