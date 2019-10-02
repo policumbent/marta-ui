@@ -562,7 +562,7 @@ class Dashboard extends Component {
           "distance": Math.round((DATA[cnt][3] * 100) * 100) / 100,
           "speed": Math.round(DATA[cnt][4] * 100) / 100,
           "time": Math.trunc(DATA[cnt][5] / 3 * 60),
-          "gear": Math.floor(cnt / 29 + 1)
+          "gear": Math.floor(cnt / 36 + 1)
         }
         cnt++;
         this.setState({ data });
