@@ -9,6 +9,7 @@ import {
   numCardElement,
   numElement,
 } from './Graph'
+import Extra from './Extra'
 
 import { FiActivity } from 'react-icons/fi'
 import { GiSpeedometer, GiCartwheel } from 'react-icons/gi'
@@ -395,70 +396,6 @@ let cnt = 1
 
 let randomNumber = (min = 0, max = 1) => {
   return Math.floor(Math.random() * (max - min + 1) + min)
-}
-
-function Extra(props) {
-  if (!props.showExtra) {
-    return null
-  }
-
-  return (
-    <Row>
-      <Col xs="12" sm="6" lg="4">
-        <Card className="text-white bg-primary">
-          <CardBody className="pb-2">
-            <div>Time [s]</div>
-            <div className="text-value text-center">{props.time}</div>
-          </CardBody>
-        </Card>
-      </Col>
-
-      <Col xs="12" sm="6" lg="2">
-        <Card className="text-white bg-dark">
-          <CardBody className="pb-2">
-            <div>Gear</div>
-            <div className="text-value text-center">{props.gear}</div>
-          </CardBody>
-        </Card>
-      </Col>
-
-      <Col xs="12" sm="6" lg="2">
-        <Card className="text-dark bg-secondary">
-          <CardBody className="pb-2">
-            <div>Distance [m]</div>
-            <div className="text-value text-center">{props.distance}</div>
-          </CardBody>
-        </Card>
-      </Col>
-
-      <Col xs="12" sm="6" lg="4">
-        <Card className="text-white bg-purple">
-          <CardBody className="pb-2">
-            <Row>
-              <Col xs="4" sm="4" lg="4">
-                <div className="text-center">Temp [°C]</div>
-                <div className="text-value text-center">
-                  {props.weather.temperature}
-                </div>
-              </Col>
-              <Col xs="4" sm="4" lg="4">
-                <div className="text-center">Humidity [%]</div>
-                <div className="text-value text-center">
-                  {props.weather.humidity}
-                </div>
-              </Col>
-              <Col xs="4" sm="4" lg="4">
-                <div className="text-center">Press [hPa]</div>
-                <div className="text-value text-center">
-                  {props.weather.pressure}
-                </div>
-              </Col>
-            </Row>
-          </CardBody>
-        </Card>
-      </Col>
-    </Row>
-  )
 }
 
 class Dashboard extends Component {
