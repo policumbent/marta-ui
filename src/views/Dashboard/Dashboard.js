@@ -419,7 +419,7 @@ class Dashboard extends Component {
       },
       weather: {
         temperature: randomNumber(28, 20),
-        humidity: randomNumber(60, 50),
+        altitude: randomNumber(50, 1000),
         pressure: 1,
       },
       showExtra: true,
@@ -498,7 +498,7 @@ class Dashboard extends Component {
       if (this._isMounted) {
         let weather = {
           temperature: randomNumber(30, 20),
-          humidity: randomNumber(80, 50),
+          altitude: randomNumber(50, 1000),
           pressure: randomNumber(5, 1),
         }
         this.setState({ weather })
