@@ -17,52 +17,21 @@ import { GiSpeedometer, GiCartwheel } from 'react-icons/gi'
 import { FaSpaceShuttle } from 'react-icons/fa'
 
 const useIsMounted = () => {
-  const isMounted = useRef(false);
+  const isMounted = useRef(false)
 
   useEffect(() => {
-    isMounted.current = true;
-    return () => isMounted.current = false;
-  }, []);
+    isMounted.current = true
+    return () => (isMounted.current = false)
+  }, [])
 
-  return isMounted;
-};
+  return isMounted
+}
 
 const Dashboard = () => {
   const isMounted = useIsMounted()
   const [data, setData] = useState()
   const [history, setHistory] = useState()
   const [weather, setWeather] = useState()
-
-  useEffect(() => {
-    SocketIoHelper.requestData()
-
-    SocketIoHelper.getHistory(list => updateHistory(list))
-    SocketIoHelper.getData(data => updateData(data))
-    SocketIoHelper.getWeather(weather => setWeather(weather))
-    console.log('dentro')
-  }, [])
-
-
-  // constructor(props) {
-  //   super(props)
-
-  //   this.state = {
-  //     data: '',
-  //     history: '',
-  //     weather: '',
-  //     showExtra: true,
-  //   }
-
-  //   SocketIoHelper.getHistory(list => {
-  //     this.history(list)
-  //   })
-
-  //   SocketIoHelper.requestData()
-  // }
-
-  const loading = () => (
-    <div className="animated fadeIn pt-1 text-center">Loading...</div>
-  )
 
   const updateHistory = useCallback(history => {
     let param = ['heartrate', 'cadence', 'power', 'speed']
@@ -109,29 +78,21 @@ const Dashboard = () => {
       setTimeout(() => {
         SocketIoHelper.requestData()
       }, 300)
-
     }
-    console.log(data)
+  }, [isMounted])
 
-  }, [])
+  useEffect(() => {
+    SocketIoHelper.requestData()
+    SocketIoHelper.getHistory(list => updateHistory(list))
 
-  // componentDidMount() {
-  //   this._isMounted = true
+    SocketIoHelper.getData(data => updateData(data))
+    SocketIoHelper.getWeather(weather => setWeather(weather))
 
-  //   // per quando si cambiano tab della pagina
-  //   SocketIoHelper.getHistory(list => {
-  //     this.history(list)
-  //   })
-  //   SocketIoHelper.getData(data => {
-  //     //TODO: if per taurus o taurusx
-  //     this.updateData(data)
-  //   })
-  //   SocketIoHelper.getWeather(weather => this.setState({ weather }))
-  // }
+  }, [updateHistory, updateData])
 
-  // componentWillUnmount() {
-  //   this._isMounted = false
-  // }
+  const loading = () => (
+    <div className="animated fadeIn pt-1 text-center">Loading...</div>
+  )
 
   let view =
     data === undefined || weather === undefined || history === undefined

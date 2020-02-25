@@ -6,38 +6,17 @@ import { mainChartData, mainChartOpts } from './costants'
 const MainChart = ({ data, history }) => {
   const [state, setState] = useState(mainChartData)
 
-  useEffect(() => {
-    manageHistory()
-  }, [])
+  const updateHistory = useCallback(() => {
+    let newState = { ...state }
+    let datasets = newState.datasets
 
-  useEffect(() => {
-    updateData({ ...state }, data)
-  }, [data])
+    datasets[0].data.push(...history.power)
+    datasets[1].data.push(...history.cadence)
+    datasets[2].data.push(...history.speed)
+    datasets[3].data.push(...history.heartrate)
 
-  const manageHistory = useCallback(() => {
-    console.log('history')
-
-    let data = { ...state }
-    for (let x = 1; x < data.labels.length; x++) {
-      let value1 = history.power[x]
-      let value2 = history.cadence[x]
-      let value3 = history.speed[x]
-      let value4 = history.heartrate[x]
-
-      if (value1 !== undefined) {
-        data.datasets[0].data.push(value1)
-        data.datasets[1].data.push(value2)
-        data.datasets[2].data.push(value3)
-        data.datasets[3].data.push(value4)
-      } else {
-        data.datasets[0].data.unshift(value1)
-        data.datasets[1].data.unshift(value2)
-        data.datasets[2].data.unshift(value3)
-        data.datasets[3].data.unshift(value4)
-      }
-    }
-    setState(data)
-  }, [state])
+    setState(newState)
+  }, [state, history])
 
   const updateData = useCallback(() => {
     let oldDataSet1 = state.datasets[0]
@@ -104,6 +83,16 @@ const MainChart = ({ data, history }) => {
       ],
     })
   }, [state, data])
+
+  useEffect(() => {
+    updateHistory()
+    // eslint-disable-next-line
+  }, [history])
+
+  useEffect(() => {
+    updateData()
+    // eslint-disable-next-line
+  }, [data])
 
   return <Line data={state} options={mainChartOpts} />
 }
