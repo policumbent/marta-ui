@@ -2,7 +2,7 @@
   "name": "marta",
   "version": "0.8.1",
   "private": true,
-  "homepage": "https://gabelluardo.github.io/marta-ui/",
+  "homepage": "https://policumbent.github.io/marta-ui/",
   "dependencies": {
     "@coreui/coreui": "^2.1.11",
     "@coreui/coreui-plugin-chartjs-custom-tooltips": "^1.3.1",
