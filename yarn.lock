@@ -10322,9 +10322,9 @@ signal-exit@^3.0.0, signal-exit@^3.0.2:
   integrity sha512-VUJ49FC8U1OxwZLxIbTTrDvLnf/6TDgxZcK8wxR8zs13xpx7xbG60ndBlhNrFi2EMuFRoeDoJO7wthSLq42EjA==
 
 simple-line-icons@^2.4.1:
-  version "2.5.2"
-  resolved "https://registry.yarnpkg.com/simple-line-icons/-/simple-line-icons-2.5.2.tgz#77f7c59cb1b68771fd8261e8c96e00a00136dbb4"
-  integrity sha512-JwpHvSsFhLH96Q6gzUtVAPhUNkDwmTTJlrC4KXgkqLjdY++aWbO05mrqWHCMbarqt8lNsZRWeJxWNiqZthkb4Q==
+  version "2.5.5"
+  resolved "https://registry.yarnpkg.com/simple-line-icons/-/simple-line-icons-2.5.5.tgz#32ea1babd842a28cc1764537ba5535e0b8f42be7"
+  integrity sha512-v52iGG/qFZTSD/70yOfA1lYoN6zmjEfDjzFT6U6jNSCsh/aeVjy+8sYyTXWz1w7tLIkN2XeMmG+cLJp/0zYK4Q==
   dependencies:
     less "^3.12.2"
 
