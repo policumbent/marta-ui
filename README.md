@@ -4,6 +4,6 @@ Interfaccia utente di [MARTA](https://github.com/policumbent/marta), per la tele
 
 **:rocket: Live demo: [here](https://policumbent.github.io/marta-ui/)**
 
-### License
+## License
 
-MIT
+[Apache-2.0](https://github.com/policumbent/marta-ui/blob/master/LICENSE)
