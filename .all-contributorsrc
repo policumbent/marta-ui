@@ -1,0 +1,37 @@
+{
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "gabelluardo",
+      "name": "Gabriele Belluardo",
+      "avatar_url": "https://avatars.githubusercontent.com/u/42920247?v=4",
+      "profile": "https://github.com/gabelluardo",
+      "contributions": [
+        "code",
+        "doc",
+        "ideas"
+      ]
+    },
+    {
+      "login": "stelosca96",
+      "name": "Stefano Loscalzo",
+      "avatar_url": "https://avatars.githubusercontent.com/u/44433696?v=4",
+      "profile": "https://github.com/stelosca96",
+      "contributions": [
+        "code",
+        "design",
+        "ideas"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "projectName": "marta-ui",
+  "projectOwner": "policumbent",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "skipCi": true
+}
